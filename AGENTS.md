@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Operating agreement for agents working in this repo. Read this first, then read `README.md`.
+Operating agreement for agents working in this repo. Read this first, then read `GOAL.md`.
 
 ## Goal
 
@@ -10,7 +10,7 @@ data with zero data leakage. Ship a working, reproducible pipeline and a short w
 ## Current layout
 
 ```
-README.md        # problem, data sources, evaluation rules
+GOAL.md          # problem, data sources, evaluation rules
 AGENTS.md        # this file
 opencode.json    # agent tooling config
 data/raw/        # fetched data + manifest.json (gitignored)
