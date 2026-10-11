@@ -24,8 +24,9 @@ Three targets are forecast from one coherent setup:
 
 ## 2. Data & provenance
 
-Everything used is recorded in `data/raw/manifest.json` (generated at
-`2026-10-11T12:11:00.935883+00:00`).
+Everything used is recorded in `data/raw/manifest.json`; the values below are from the run
+that produced this report (`fetched_at` `2026-10-11T12:11:00.935883+00:00` — re-running
+`python -m src.fetch` refreshes that timestamp and the manifest).
 
 **Alerts** (`manifest.json` → `alerts_snapshot`):
 
