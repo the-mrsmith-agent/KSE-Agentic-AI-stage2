@@ -1,0 +1,17 @@
+[project]
+name = "kse-air-raid-alerts"
+version = "0.1.0"
+description = "Time series analysis and forecasting of air raid alerts in Ukraine"
+requires-python = ">=3.12"
+dependencies = [
+    "pandas",
+    "numpy",
+    "scikit-learn",
+    "matplotlib",
+]
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
