@@ -158,5 +158,10 @@ def fit_predict(model, train_frame: pd.DataFrame, frame: pd.DataFrame, target: s
     median = np.nanmedian(X, axis=0)
     median = np.where(np.isnan(median), 0.0, median)  # all-NaN column in train: 0 is as good as any
     model.fit(np.where(np.isnan(X), median, X), train_frame[target].to_numpy())
-    X_eval = frame[cols].to_numpy(np.float64)
-    return model.predict(np.where(np.isnan(X_eval), median, X_eval))
+    X_eval = np.where(np.isnan(frame[cols].to_numpy(np.float64)), median, frame[cols].to_numpy(np.float64))
+    # A classifier's `predict` returns class labels; every caller here wants the rate, so
+    # take the positive-class probability instead (a hard 0/1 "probability" is useless for
+    # thresholds, Brier and calibration).
+    if hasattr(model, "predict_proba"):
+        return model.predict_proba(X_eval)[:, 1]
+    return model.predict(X_eval)

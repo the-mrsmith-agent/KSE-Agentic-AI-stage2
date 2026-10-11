@@ -169,6 +169,9 @@ def test_fit_predict_logistic_and_nan_tolerance():
     pred = fit_predict(make_logistic(), train, test, "y_start")
     assert len(pred) == len(test)
     assert np.isfinite(pred).all() and ((pred >= 0) & (pred <= 1)).all()
+    # `predict` would return class labels; the caller needs the rate, so the result must not
+    # collapse to a two-valued 0/1 vector.
+    assert len(np.unique(pred)) > 2
 
 
 def test_histgb_fits_and_predicts_without_nan():
