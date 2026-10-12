@@ -11,6 +11,7 @@ peeking at the future.
 |---|---|
 | **Plain-language results** (no statistics needed) | [`reports/brief.md`](reports/brief.md) |
 | **Full technical write-up** (data window, setup, metrics, leakage checklist, limitations) | [`reports/findings.md`](reports/findings.md) |
+| **How the models evolved** (readable model first, then the iteration) | [`reports/models.md`](reports/models.md) |
 | **Exploration** — charts and numbers | [`reports/eda.md`](reports/eda.md), [`reports/figures/`](reports/figures/) |
 | **Problem statement and data decisions** | [`GOAL.md`](GOAL.md) |
 | **How this repo is built and worked on** | [`AGENTS.md`](AGENTS.md) |

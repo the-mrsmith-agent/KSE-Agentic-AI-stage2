@@ -159,6 +159,9 @@ Holdout (`test`), from `reports/metrics.json`. "—" = target not applicable to 
 `beats_baselines` in `metrics.json`: Poisson and HistGB beat both baselines on starts/day;
 seasonal naive beats hour-of-week (2.232 < 2.495); hour-of-week beats neither.
 
+The development story — the readable model first, then the boosting iteration and what it
+bought — is in [`reports/models.md`](models.md).
+
 - ![national daily](figures/eval_national_daily.png) `eval_national_daily.png` — national
   daily starts on the holdout: actual vs both baselines, Poisson and HistGB.
 - ![calibration](figures/eval_calibration.png) `eval_calibration.png` — reliability curve for
