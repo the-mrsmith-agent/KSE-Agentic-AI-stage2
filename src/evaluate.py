@@ -8,7 +8,8 @@ Order of operations — every choice is frozen on train/tune/folds before `test`
     fit on the 180-day train window -> predict tune
     choose_threshold + conformal_width(tune)
     build test frames                       <-- FIRST and ONLY read of `test`
-    fit on train -> predict test -> metrics -> figures -> reports/metrics.json
+    fit on train -> predict test -> metrics -> figures
+                                          -> reports/metrics.json + reports/predictions.csv
 
 The single test read is the `build_frames(splits["test"])` call in `main`; everything above
 it uses `train`, `tune` or the fold windows, so no threshold/width/hyperparameter can have
@@ -49,6 +50,7 @@ from src.models import (
 
 FIGDIR = pathlib.Path("reports/figures")
 METRICS = pathlib.Path("reports/metrics.json")
+PREDICTIONS = pathlib.Path("reports/predictions.csv")
 
 TRAIN_DAYS = 180
 TEST_DAYS = 14
@@ -636,6 +638,12 @@ def main() -> None:
     _fig_folds(fold_table, FIGDIR / "eval_fold_scores.png")
 
     METRICS.write_text(json.dumps(result, indent=2, default=_jsonable) + "\n")
+    # The raw holdout guesses, one row per origin x region: src.brief turns these into a
+    # plain-language "what really happened vs what we said" table for non-technical readers.
+    panel_cols = ["origin", "region", "y_starts_day", "y_minutes_day", "p_how",
+                  "p_snaive_start", "p_snaive_min", "p_poisson_start", "p_poisson_min",
+                  "p_histgb_start", "p_histgb_min"]
+    test_daily[panel_cols].to_csv(PREDICTIONS, index=False)
     _summary(result)
 
 

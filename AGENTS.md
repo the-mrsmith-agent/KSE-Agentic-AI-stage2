@@ -29,6 +29,7 @@ Missing directories are created when first needed — don't pre-scaffold.
   `pyproject.toml` when (and only when) a dependency is actually needed. Start with
   stdlib + pandas/numpy; add statsmodels/scikit-learn/lightgbm only if used.
 - Tests: `python -m pytest -q`. One self-check per non-trivial module is enough.
+- Full pipeline in one command: `python -m src.run_all` (fetch -> eda -> evaluate -> brief).
 - Data fetch scripts must be idempotent and safe to re-run: they skip or upsert, and
   always refresh `data/raw/manifest.json`.
 
